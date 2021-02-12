@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="col">
-      <img src="../assets/img/ilustrasi.png" width="100%" alt="" />
+      <img src="assets/images/ilustrasi.png" width="100%" alt="" />
     </div>
   </div>
 </template>
