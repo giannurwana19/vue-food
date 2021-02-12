@@ -1,0 +1,19 @@
+body {
+  font-family: 'Nunito';
+}
+
+.router-link-exact-active {
+  font-weight: 600;
+}
+
+.btn-success {
+  background-color: #4eb883;
+}
+
+.btn-success:hover {
+  background-color: #4f9a74;
+}
+
+.badge-success {
+  background-color: #4eb883;
+}
