@@ -8,7 +8,12 @@
             <span>in your Gadget!</span>
           </h2>
           <p>Ayo segera pilih dan pesan makanan favorit anda!</p>
-          <router-link class="btn btn-lg btn-success px-5" to=""><b-icon-arrow-right></b-icon-arrow-right> Pesan</router-link>
+          <router-link
+            class="btn btn-lg btn-success px-5"
+            :to="{ name: 'foods' }"
+          >
+            <b-icon-arrow-right></b-icon-arrow-right> Pesan
+          </router-link>
         </div>
       </div>
     </div>

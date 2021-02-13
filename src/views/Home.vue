@@ -7,7 +7,7 @@
         <h3>Best <strong>Foods</strong></h3>
       </div>
       <div class="col">
-        <router-link to="/food" class="btn btn-success float-right">
+        <router-link :to="{name: 'foods'}" class="btn btn-success float-right">
           <b-icon-eye></b-icon-eye> Lihat Semua
         </router-link>
       </div>
@@ -38,7 +38,7 @@ export default {
   methods: {
     async setProducts() {
       try {
-        const { data } = await axios.get('http://localhost:3005/bestProdutcs');
+        const { data } = await axios.get('http://localhost:3005/bestProducts');
         this.products = data;
       } catch (error) {
         console.log(error.response.data);
