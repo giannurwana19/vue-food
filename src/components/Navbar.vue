@@ -30,7 +30,9 @@
             <router-link class="nav-link" to="/">
               Keranjang
               <b-icon-bag></b-icon-bag>
-              <span class="badge badge-success ml-2">0</span>
+              <span class="badge badge-success ml-2">
+                {{ totalOrder.length }}
+              </span>
             </router-link>
           </li>
         </ul>
@@ -40,7 +42,33 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios';
+export default {
+  data() {
+    return {
+      totalOrder: [],
+    };
+  },
+
+  methods: {
+    async getCarts() {
+      try {
+        const { data } = await axios.get('http://localhost:3005/carts');
+        this.totalOrder = data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+
+  mounted() {
+    this.getCarts();
+  },
+
+  updated() {
+    this.getCarts();
+  },
+};
 </script>
 
 <style></style>

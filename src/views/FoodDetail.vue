@@ -34,15 +34,25 @@
           Harga : <strong>Rp. {{ product.price }}</strong>
         </p>
 
-        <form>
+        <form @submit.prevent="handleSubmit">
           <div class="form-group">
-            <label for="">Jumlah Pesan :</label>
-            <input type="number" class="form-control" />
+            <label for="">Jumlah Pesan (porsi) :</label>
+            <input
+              type="number"
+              v-model="order.totalOrder"
+              class="form-control"
+            />
           </div>
 
           <div class="form-group">
             <label for="">Keterangan :</label>
-            <textarea id="" cols="30" rows="3" class="form-control"></textarea>
+            <textarea
+              id=""
+              v-model="order.description"
+              cols="30"
+              rows="3"
+              class="form-control"
+            ></textarea>
           </div>
 
           <button type="submit" class="btn btn-success">
@@ -60,6 +70,7 @@ export default {
   data() {
     return {
       product: {},
+      order: {},
     };
   },
 
@@ -72,6 +83,31 @@ export default {
         this.product = data;
       } catch (error) {
         console.log(error.response);
+      }
+    },
+
+    handleSubmit() {
+      if (this.order.totalOrder) {
+        this.order.product = this.product;
+        axios
+          .post('http://localhost:3005/carts', this.order)
+          .then(() => {
+            this.$router.push({ name: 'carts' });
+            this.$toast.success('Sukses Masuk keranjang!', {
+              type: 'success',
+              position: 'top-right',
+              dismissible: true,
+            });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      } else {
+        this.$toast.success('Harap masukkan jumlah pesan!', {
+          type: 'error',
+          position: 'top-right',
+          dismissible: true,
+        });
       }
     },
   },
