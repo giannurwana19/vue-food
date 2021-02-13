@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Food from '../views/Food.vue';
 import FoodDetail from '../views/FoodDetail.vue';
 import Cart from '../views/Cart.vue';
+import OrderCompleted from '../views/OrderCompleted.vue';
 
 Vue.use(VueRouter);
 
@@ -27,7 +28,12 @@ const routes = [
     path: '/carts',
     name: 'carts',
     component: Cart,
-  }
+  },
+  {
+    path: '/order-completed',
+    name: 'order.completed',
+    component: OrderCompleted,
+  },
 ];
 
 const router = new VueRouter({

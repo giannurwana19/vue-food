@@ -3,24 +3,20 @@
     <div class="row">
       <div class="col-md">
         <h2>Daftar <strong>Makanan</strong></h2>
+        <p>Pilih makanan <strong>kesukaanmu!</strong></p>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
+    <div class="row mt-2">
+      <div class="col-md-8">
         <div class="input-group mb-3">
           <input
             v-model="keyword"
             @keyup="searchFood"
             type="text"
             class="form-control"
-            placeholder="Cari Makanan kesukaan anda..."
+            placeholder="Mau makan apa hari ini..?"
           />
-          <div class="input-group-prepend">
-            <span class="btn btn-success">
-              <b-icon-search></b-icon-search>
-            </span>
-          </div>
         </div>
       </div>
     </div>

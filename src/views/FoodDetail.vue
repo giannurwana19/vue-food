@@ -29,6 +29,7 @@
               type="number"
               v-model="order.totalOrder"
               class="form-control"
+              placeholder="0"
             />
           </div>
 
@@ -40,6 +41,7 @@
               cols="30"
               rows="3"
               class="form-control"
+              placeholder="Keterangan spt: Pedes, Nasi Setengah..."
             ></textarea>
           </div>
 

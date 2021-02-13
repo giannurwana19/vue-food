@@ -64,6 +64,27 @@
         </div>
       </div>
     </div>
+
+    <!-- checkout -->
+    <div class="row mt-3 justify-content-end">
+      <div class="col-lg-4 col-md-6">
+        <form @submit.prevent="handleCheckout">
+          <div class="form-group">
+            <label for="">Nama Pemesan :</label>
+            <input type="text" v-model="order.name" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="">Nomor Meja :</label>
+            <input type="text" v-model="order.noTable" class="form-control" />
+          </div>
+
+          <button type="submit" class="btn btn-success float-right">
+            <b-icon-cart></b-icon-cart> Checkout
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -75,6 +96,7 @@ export default {
   data() {
     return {
       carts: [],
+      order: {},
     };
   },
 
@@ -100,6 +122,47 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+
+    handleCheckout() {
+      if (!this.order.cart) {
+        this.$toast.error('Keranjang Makanan Anda Kosong!', {
+          position: 'top-right',
+          dismissible: true,
+        });
+      } else {
+        if (this.order.name && this.order.noTable) {
+          this.order.carts = this.carts;
+
+          axios
+            .post('http://localhost:3005/orders', this.order)
+            .then(() => {
+              this.carts.map(async cart => {
+                try {
+                  return await axios.delete(
+                    `http://localhost:3005/carts/${cart.id}`
+                  );
+                } catch (error) {
+                  console.log(error);
+                }
+              });
+
+              this.$router.push({ name: 'order.completed' });
+              this.$toast.success('Sukses dipesan!', {
+                position: 'top-right',
+                dismissible: true,
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else {
+          this.$toast.error('Nama pemesan dan Nomor meja wajib diisi!', {
+            position: 'top-right',
+            dismissible: true,
+          });
+        }
+      }
     },
   },
 
