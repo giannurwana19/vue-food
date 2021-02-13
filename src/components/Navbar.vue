@@ -27,7 +27,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <router-link class="nav-link" to="/">
+            <router-link class="nav-link" :to="{name: 'carts'}">
               Keranjang
               <b-icon-bag></b-icon-bag>
               <span class="badge badge-success ml-2">

@@ -2,19 +2,7 @@
   <div class="food-detail">
     <div class="row">
       <div class="col">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <router-link :to="{ name: 'home' }">Home</router-link>
-            </li>
-            <li class="breadcrumb-item">
-              <router-link :to="{ name: 'foods' }">Foods</router-link>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-              Food Order
-            </li>
-          </ol>
-        </nav>
+        <Breadcrumb name="Food Order" />
       </div>
     </div>
 
@@ -66,7 +54,11 @@
 
 <script>
 import axios from 'axios';
+import Breadcrumb from '../components/Breadcrumb.vue';
 export default {
+  components: {
+    Breadcrumb,
+  },
   data() {
     return {
       product: {},
@@ -94,7 +86,6 @@ export default {
           .then(() => {
             this.$router.push({ name: 'carts' });
             this.$toast.success('Sukses Masuk keranjang!', {
-              type: 'success',
               position: 'top-right',
               dismissible: true,
             });
@@ -103,8 +94,7 @@ export default {
             console.log(error);
           });
       } else {
-        this.$toast.success('Harap masukkan jumlah pesan!', {
-          type: 'error',
+        this.$toast.error('Harap masukkan jumlah pesan!', {
           position: 'top-right',
           dismissible: true,
         });
@@ -119,10 +109,6 @@ export default {
 </script>
 
 <style scoped>
-.breadcrumb-item.active {
-  font-weight: 700;
-}
-
 img {
   border-radius: 20px;
 }
